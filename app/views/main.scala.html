@@ -1,4 +1,6 @@
-@(content: Html)
+@import play.mvc.Http.Request
+
+@(content: Html)(implicit rh: Request)
 
 <!DOCTYPE html>
 
@@ -12,7 +14,7 @@
 
         <link rel="stylesheet" media="screen" href="@routes.Assets.at("lib/bootstrap/css/bootstrap.css")"/>
         <link rel="stylesheet" media="screen" href="@routes.Assets.at("lib/bootstrap/css/bootstrap-theme.css")"/>
-        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")"/>
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.min.css")"/>
         <link rel="stylesheet" href="@routes.Assets.at("lib/leaflet/leaflet.css")" />
 
         <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
