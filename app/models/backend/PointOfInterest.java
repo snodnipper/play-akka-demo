@@ -3,7 +3,7 @@ package models.backend;
 /**
  * A point of interest, either a user position or a cluster of positions
  */
-public abstract class PointOfInterest {
+public abstract class PointOfInterest implements SerializableMessage {
 
     private final String id;
     private final long timestamp;

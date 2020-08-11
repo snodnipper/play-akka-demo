@@ -24,6 +24,7 @@ public class RegionManagerClient extends UntypedAbstractActor {
         if (msg instanceof UserPosition) {
             UserPosition pos = (UserPosition) msg;
             RegionId regionId = settings.GeoFunctions.regionForPoint(pos.getPosition());
+            // TODO System.out.println("Emitting: " + regionId + ", " + pos.getPosition().toString());
             regionManagerRouter.tell(new UpdateUserPosition(regionId, pos), self());
         }
     }

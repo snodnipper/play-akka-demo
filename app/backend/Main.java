@@ -26,6 +26,7 @@ import akka.cluster.Cluster;
 public class Main {
     public static void main(String... args) {
         ActorSystem system = ActorSystem.create("application");
+        akka.management.javadsl.AkkaManagement.get(system).start();
 
         if (Cluster.get(system).getSelfRoles().stream().anyMatch(r -> r.startsWith("backend"))) {
             system.actorOf(RegionManager.props(), "regionManager");

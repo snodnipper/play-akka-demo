@@ -41,19 +41,34 @@ public class BotManager extends UntypedAbstractActor {
 
     private static Object TICK = new Object();
 
-    private final Cancellable tickTask = getContext().system().scheduler().schedule(
-            Duration.apply(1, TimeUnit.SECONDS), Duration.apply(3, TimeUnit.SECONDS),
-            self(), TICK, getContext().dispatcher(), self());
+    //scheduleWithFixedDelay
+    private final Cancellable tickTask = getContext().system().scheduler().scheduleWithFixedDelay(
+            Duration.apply(1, TimeUnit.SECONDS), Duration.apply(3, TimeUnit.SECONDS), new Runnable() {
+                @Override
+                public void run() {
+                    self().tell(TICK, sender());
+                    System.out.println("Good times!");
+                }
+            }, getContext().getDispatcher());
+//    private final Cancellable tickTask = getContext().system().scheduler()
+//            .scheduleWithFixedDelay(Duration.apply(1, TimeUnit.SECONDS),
+//                    Duration.apply(3, TimeUnit.SECONDS), self(), TICK, getContext().dispatcher(), self());
+//    private final Cancellable tickTask = getContext().system().scheduler().schedule(
+//            Duration.apply(1, TimeUnit.SECONDS), Duration.apply(3, TimeUnit.SECONDS),
+//            self(), TICK, getContext().dispatcher(), self());
 
     public void postStop() throws Exception {
+        System.out.println("Post stop");
         tickTask.cancel();
     }
 
     public void onReceive(Object msg) throws Exception {
+        System.out.println("Message received Captains " + msg);
         if (msg == TICK && total >= max) {
             tickTask.cancel();
 
         } else if (msg == TICK) {
+            System.out.println("Tick");
 
             int totalBefore = total;
             boolean originalTrail = total == 0;

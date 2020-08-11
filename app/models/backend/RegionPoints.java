@@ -7,7 +7,7 @@ import java.util.Collection;
 /**
  * The points of interest for a given regionId.
  */
-public class RegionPoints {
+public class RegionPoints implements SerializableMessage {
 
     private final RegionId regionId;
     private final Collection<PointOfInterest> points;

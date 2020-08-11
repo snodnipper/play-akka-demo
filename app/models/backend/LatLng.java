@@ -5,7 +5,7 @@ import org.geojson.LngLatAlt;
 /**
  * A latitude and longitude point
  */
-public final class LatLng {
+public final class LatLng implements SerializableMessage {
 
     private final double lat;
     private final double lng;

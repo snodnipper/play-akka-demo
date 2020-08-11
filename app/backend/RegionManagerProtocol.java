@@ -4,6 +4,7 @@ import akka.routing.ConsistentHashingRouter.ConsistentHashable;
 import models.backend.PointOfInterest;
 import models.backend.RegionId;
 import models.backend.RegionPoints;
+import models.backend.SerializableMessage;
 
 public abstract class RegionManagerProtocol {
 
@@ -12,7 +13,7 @@ public abstract class RegionManagerProtocol {
      *
      * Sent by clients of the backend when they want to update a users position.
      */
-    public static class UpdateUserPosition implements ConsistentHashable {
+    public static class UpdateUserPosition implements ConsistentHashable, SerializableMessage {
         private final RegionId regionId;
         private final PointOfInterest.UserPosition userPosition;
 
@@ -44,7 +45,7 @@ public abstract class RegionManagerProtocol {
      *
      * Sent by child regions to update their data in their parent summary region.
      */
-    public static class UpdateRegionPoints implements ConsistentHashable {
+    public static class UpdateRegionPoints implements ConsistentHashable, SerializableMessage {
         private final RegionId regionId;
         private final RegionPoints regionPoints;
 

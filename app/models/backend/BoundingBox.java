@@ -3,7 +3,7 @@ package models.backend;
 /**
  * A bounding box
  */
-public class BoundingBox {
+public class BoundingBox implements SerializableMessage {
 
     private final LatLng southWest;
     private final LatLng northEast;

@@ -26,6 +26,7 @@ public class RegionManager extends UntypedAbstractActor {
 
 
     public void onReceive(Object msg) throws Exception {
+        System.out.println("RegionManager " + msg);
         if (msg instanceof UpdateUserPosition) {
             UpdateUserPosition update = (UpdateUserPosition) msg;
 
